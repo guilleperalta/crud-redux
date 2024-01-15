@@ -22,7 +22,14 @@ export function crearNuevoProductoAction(producto) {
       Swal.fire('Correcto', 'El producto se agrego correctamente', 'success')
     } catch (error) {
       console.log(error)
+
+      // Si hay un error cambiamos el estado
       dispatch(agregarProductoError(true))
+      Swal.fire({
+        icon: 'error',
+        title: 'Hubo un error',
+        text: 'Huebo un error, intenta de nuevo',
+      })
     }
   }
 }
