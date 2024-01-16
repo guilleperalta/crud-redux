@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 // Actions de Redux
 import { crearNuevoProductoAction } from '../actions/productoActions'
 
 const NuevoProducto = () => {
+  // Para redireccionar
+  let navigate = useNavigate()
+
   // State del componente
   const [nombre, setNombre] = useState('')
   const [precio, setPrecio] = useState(0)
@@ -30,6 +34,9 @@ const NuevoProducto = () => {
     }
 
     agregarProducto({ nombre, precio })
+
+    // Redireccionar al home
+    navigate('/')
   }
 
   return (

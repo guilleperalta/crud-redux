@@ -1,6 +1,8 @@
+### `npm install -g json-server`
+
 ### `json-server db.json --port 4000`
 
-Para levantar el FAKE SERVER con JSON server
+Para instalar y levantar el FAKE SERVER con JSON server
 
 ### `npm start`
 
