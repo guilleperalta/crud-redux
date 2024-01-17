@@ -9,13 +9,13 @@ const EditarProducto = () => {
   // Habilitar redireccion
   const navigate = useNavigate()
 
+  const dispatch = useDispatch()
+
   // Nuevo state de producto
   const [producto, setProducto] = useState({
     nombre: '',
     precio: 0,
   })
-
-  const dispatch = useDispatch()
 
   // Producto a editar
   const productoeditar = useSelector(state => state.productos.productoeditar)

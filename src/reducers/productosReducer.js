@@ -13,44 +13,39 @@ import {
   PRODUCTO_EDITADO_ERROR,
 } from '../types'
 
+// cada reducer tiene su propio state
 const initialState = {
   productos: [],
-  error: false,
+  error: null,
   loading: false,
   productoeliminar: null,
   productoeditar: null,
 }
 
+// eslint-disable-next-line
 export default function (state = initialState, action) {
   switch (action.type) {
-    // Agregar producto
+    case COMENZAR_DESCARGA_PRODUCTOS:
     case AGREGAR_PRODUCTO:
       return {
         ...state,
         loading: action.payload,
       }
-
     case AGREGAR_PRODUCTO_EXITO:
       return {
         ...state,
         loading: false,
         productos: [...state.productos, action.payload],
       }
-
     case AGREGAR_PRODUCTO_ERROR:
+    case DESCARGA_PRODUCTOS_ERROR:
+    case PRODUCTO_ELIMINADO_ERROR:
+    case PRODUCTO_EDITADO_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload,
       }
-
-    // Obtener productos
-    case COMENZAR_DESCARGA_PRODUCTOS:
-      return {
-        ...state,
-        loading: action.payload,
-      }
-
     case DESCARGA_PRODUCTOS_EXITO:
       return {
         ...state,
@@ -58,21 +53,11 @@ export default function (state = initialState, action) {
         error: null,
         productos: action.payload,
       }
-
-    case DESCARGA_PRODUCTOS_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      }
-
-    // Eliminar productos
     case OBTENER_PRODUCTO_ELIMINAR:
       return {
         ...state,
         productoeliminar: action.payload,
       }
-
     case PRODUCTO_ELIMINADO_EXITO:
       return {
         ...state,
@@ -81,21 +66,11 @@ export default function (state = initialState, action) {
         ),
         productoeliminar: null,
       }
-
-    case PRODUCTO_ELIMINADO_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      }
-
-    // Editar productos
     case OBTENER_PRODUCTO_EDITAR:
       return {
         ...state,
         productoeditar: action.payload,
       }
-
     case PRODUCTO_EDITADO_EXITO:
       return {
         ...state,
@@ -106,14 +81,6 @@ export default function (state = initialState, action) {
             : producto
         ),
       }
-
-    case PRODUCTO_EDITADO_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      }
-
     default:
       return state
   }
